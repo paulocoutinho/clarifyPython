@@ -26,4 +26,14 @@ class AnalisadorDeVendas:
     def limparDados(self):
         #limpeza e preparação dos dados para analise com as demais funções
         self.dados['data'] = pd.to_datetime(self.dados['data'],errors='coerce')#converte as data em formato de texto para o formato datetime
-        self.dados['valor'] = self.dados['valor'].replace({})
+        self.dados['valor'] = self.dados['valor'].replace({',','.'}, regex=True).astype(float)
+        self.dados['mes'] = self.dados['data'].dt.month
+        self.dados['ano'] = self.dados['data'].dt.year
+        self.dados['dia'] = self.dados['data'].dt.day
+        self.dados['dia_da_semana'] = self.dados['data'].dt.weekday
+        #remove os dados ausentes em colunas
+        self.dados.dropna(subset=['produto','valor'], inplace=True)
+
+#roda o app
+if __name__ == '__main__':
+    app.run_server(debug=True)
