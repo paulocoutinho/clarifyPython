@@ -33,6 +33,28 @@ class AnalisadorDeVendas:
         self.dados['dia_da_semana'] = self.dados['data'].dt.weekday
         #remove os dados ausentes em colunas
         self.dados.dropna(subset=['produto','valor'], inplace=True)
+    
+    def analiseVendasProduto(self, produtosFiltrados):
+        dfproduto = self.dados[self.dados['produto'].isin(produtosFiltrados)]
+        dfproduto = dfproduto.groupby(['produto'])['valor'].sum().reset_index().sort_values(by='valor', ascending=True)
+        fig = px.bar(
+            dfproduto,
+            x= 'produto',
+            y= 'valor',
+            title= "Vendas por Produto",
+            calor= "valor"
+        )
+        return fig
+
+#------------------- Instanciar o objeto de analise de vendas-------------------#
+analise = AnalisadorDeVendas(df)
+#------------------- layout do app dash -------------------#
+app.layout = html.Div([
+    html.H1('Análise de Vendas', style={'textAlign': 'center')
+])
+
+#------------------- Callbacks -------------------#
+
 
 #roda o app
 if __name__ == '__main__':
