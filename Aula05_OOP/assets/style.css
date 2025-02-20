@@ -1,0 +1,25 @@
+body {
+    front-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/*estitulo do titulo principal*/
+h1 {
+    text-align: center;
+    color: #4caf50;
+    font-size: 36px;
+    margin-top: 50px;
+}
+
+/*estilo do grafico*/
+#graficoInterativo {
+    margin: auto;
+    width: 80%;
+    height: 600px;
+}
+
+/*estilo do container principal*/
+div {
+    padding: 20px;
+}
+
