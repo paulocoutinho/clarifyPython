@@ -21,7 +21,7 @@ def gerarDadosVendas(numLinhas):
 
 dadosVendas = gerarDadosVendas(100)
 
-dfVendas = pd.DataFrame(dadosVendas, columns=['produtos','região','valor','data'])
+dfVendas = pd.DataFrame(dadosVendas, columns=['produtos','regiao','valor','data'])
 
 dfVendas.to_csv('vendas.csv', index=False)
 
