@@ -18,7 +18,7 @@ app = dash.Dash(__name__)
 df = pd.read_csv('vendas.csv')
 #cria a classe para a estrutura de analise de dados
 class AnalisadorDeVendas:
-    def __init__(self,dados):
+    def __init__ (self,dados):
         #inicializa a classe com o dataframe da tabela vendas
         self.dados = dados
         self.limparDados()
@@ -26,7 +26,7 @@ class AnalisadorDeVendas:
     def limparDados(self):
         #limpeza e preparação dos dados para analise com as demais funções
         self.dados['data'] = pd.to_datetime(self.dados['data'],errors='coerce')#converte as data em formato de texto para o formato datetime
-        self.dados['valor'] = self.dados['valor'].replace({',','.'}, regex=True).astype(float)
+        self.dados['valor'] = self.dados['data'].replace({',': '.'}, regex=True).astype(float)
         self.dados['mes'] = self.dados['data'].dt.month
         self.dados['ano'] = self.dados['data'].dt.year
         self.dados['dia'] = self.dados['data'].dt.day
@@ -42,7 +42,7 @@ class AnalisadorDeVendas:
             x= 'produto',
             y= 'valor',
             title= "Vendas por Produto",
-            calor= "valor"
+            color= "valor"
         )
         return fig
 
@@ -50,11 +50,67 @@ class AnalisadorDeVendas:
 analise = AnalisadorDeVendas(df)
 #------------------- layout do app dash -------------------#
 app.layout = html.Div([
-    html.H1('Análise de Vendas', style={'textAlign': 'center')
+    html.H1('Análise de Vendas', style={'text-align':'center'}),
+    #cria os filtros de seleção para o painel
+    html.Div([
+        html.label('Selecione os produtos'),
+        dcc.Dropdown(
+            id = 'produto-dropdown',
+            options = [{'label':produto, 'value':produto} for produto in df['produto'].unique()],
+            multi = True,
+            value = df['produto'].unique().tolist(),
+            style = {'width':'48%'}
+        ),
+        html.label('Selecione as Rigões'),
+        dcc.Dropdown(
+            id = 'regiao-dropdown',
+            options = [{'label':regiao, 'value':regiao} for regiao in df['regiao'].unique()],
+            multi = True,
+            value = df['regiao'].unique().tolist(),
+            style = {'width':'48%'}
+        ),
+        html.label('Selecione as Rigões'),
+        dcc.Dropdown(
+            id = 'ano-dropdown',
+            options = [{'label':ano,} for ano in df['ano'].unique()],
+            multi = True,
+            value = df['ano'].unique().tolist(),
+            style = {'width':'48%'}
+        ),
+        html.label('Selecione um periodo'),
+        dcc.Dropdown(
+            id = 'data-picker-range',
+            start_date = df['Data'].min().date(),
+            end_date = df['Data'].max().date(),
+            display_format = 'YYYY-MM-DD',
+            value = df['ano'].unique().tolist(),
+            style = {'width':'48%'}
+        ),
+    ], style={'padding':'20px'}),
+    html.Div([
+        dcc.Graph(id='grafico-produto')
+    ])
+        
 ])
 
 #------------------- Callbacks -------------------#
-
+@app.callback(
+    Output('grafico-produto', 'figure'),
+    [Input('produto-dropdown', 'value'), Input('regiao-dropdown', 'value'), Input('ano-dropdown', 'value'), Input('date-picker-range', 'start_date'), Input('date-picker-range', 'end_date')] 
+)
+def upgrade_graphs(produtos, regioes, anos, start_date, end_date): 
+    try:
+        start_date = pd.to_datetime(start_date)
+        end_date = pd.to_datetime(end_date)
+        
+        fig_produto = analise.analiseVendasProduto(produtos)
+        
+        return fig_produto
+    
+    except Exception as e:
+        print(f'Erro ao atualizar os graficos: {str(e)}')
+        return go.Figure()
+        
 
 #roda o app
 if __name__ == '__main__':
