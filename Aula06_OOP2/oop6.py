@@ -101,9 +101,9 @@ def upgrade_graphs(produtos, regioes, anos, start_date, end_date):
         start_date = pd.to_datetime(start_date)
         end_date = pd.to_datetime(end_date)
         
-        fig_produto = analise.analiseVendasProduto(produtos)
+        figProduto = analise.analiseVendasProduto(produtos)
         
-        return None
+        return figProduto
     
     except Exception as e:
         print(f'Erro ao atualizar os graficos: {str(e)}')
