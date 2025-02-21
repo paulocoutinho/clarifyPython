@@ -122,7 +122,7 @@ class AnalisadorDeVendas:
             outliners,
             x= 'data',
             y= 'valor',
-            title= 'Outliners',
+            title= 'Outliers',
         )
         return fig
 
@@ -142,8 +142,67 @@ class AnalisadorDeVendas:
         desv = self.dados['valor'].std() #calcula o desvio padrão
         return med, desv
 
-#vendas acumuladas
-
+    #vendas acumuladas
+    def vendasAcumuladas(self):
+        dfAcumulado = self.dados.groupby('data')['valor'].sum().cumsum().reset_index()
+        dfAcumulado['mediaMovel7']= dfAcumulado['valor'].rolling(window=7).mean()
+        dfAcumulado['desvioPadrao7']= dfAcumulado['valor'].rolling(window=7).std()
+        dfAcumulado['crescimentoPercentual']= dfAcumulado['valor'].pct_change() * 100
+        dfAcumulado['max_valor']= dfAcumulado['valor'].expanding().max()
+        dfAcumulado['min_valor']= dfAcumulado['valor'].expanding().min()
+        #cria o grafico
+        fig = px.line(
+            dfAcumulado,
+            x= 'data',
+            y= ['valor','mediaMovel7','max_valor','min_valor'],
+            title= 'Vendas Acumuladas',
+            labels= {'valor':'Vendas Acumuladas','mediaMovel7':'Média Móvel 7 dias','max_valor':'Máximo','min_valor':'Mínimo'},
+            markers= True
+        )
+        fig.add_trace(
+            go.Scatter(
+                x= dfAcumulado['data'],
+                y= dfAcumulado['crescimentoPercentual'],
+                mode= 'lines',
+                name= 'Crescimento Percentual',
+                line= dict(color='orange', width=2, dash='dot'),
+                yaxis= 'y2'
+            )
+        )
+        fig.update_layout(
+            title_font=dict(size=20, family='Poppins', color='#2980b9'),
+            plot_bgcolor= '#34495e',
+            paper_bgcolor= '#2c3e50',
+            font= dict(color='#ecf0f1', family='Roboto'),
+            xaxis=dict(
+                title= 'Data',
+                tickformat= '%d/%m/%Y',
+                showgrid= True,
+                gridcolor= '#7f8c8d',
+                tickangle= 45
+            ),
+            yaxis= dict(
+                title= 'Vendas Acumuladas',
+                showgrid= True,
+                gridcolor= '#7f8c8d',
+            ),
+            yaxis2= dict(
+                title= 'Crescimento Percentual (%)',
+                showgrid= True,
+                side = 'right',
+                overlaying= 'y',
+                tickformat= '.1f'
+            ),
+            legend= dict(
+                title= 'Métricas',
+                orientation= 'h',
+                yanchor= 'bottom',
+                y= 1.01,
+                xanchor= 'center',
+                x= 0.5
+            )
+        )
+        return fig
 
 #------------------- Instanciar o objeto de analise de vendas-------------------#
 analise = AnalisadorDeVendas(df)
@@ -171,8 +230,13 @@ app.layout = html.Div([
         html.Label('Selecione as Ano'),
         dcc.Dropdown(
             id = 'ano-dropdown',
-            options = {'distth':'48%'}
-        ),
+            options=[
+                    {"label": str(ano), "value": ano} for ano in df["ano"].unique()
+                    ],
+                    value=df["ano"].min(),
+                    style={"width": "48%"},
+                ),
+
             
         html.Label('Selecione um periodo'),
         dcc.DatePickerRange(
@@ -192,7 +256,8 @@ app.layout = html.Div([
         dcc.Graph(id='grafico-semana'),
         dcc.Graph(id='grafico-outliers'),
         dcc.Graph(id='grafico-distribuicao'),
-        dcc.Graph(id='grafico-mediaDesvio')
+        dcc.Graph(id='grafico-mediaDesvio'),
+        dcc.Graph(id='grafico-vendasAcumulado')
     ])
         
 ],style={'background':'black','padding':'20px'})
@@ -207,20 +272,20 @@ app.layout = html.Div([
     Output('grafico-outliers', 'figure'),
     Output('grafico-distribuicao', 'figure'),
     Output('grafico-mediaDesvio', 'figure'),
-    
+    Output('grafico-vendasAcumulado', 'figure'),
     [
-        Input('produto-dropdown', 'value'), 
-        Input('regiao-dropdown', 'value'), 
-        Input('ano-dropdown', 'value'), 
-        Input('date-picker-range', 'start_date'), 
+        Input('produto-dropdown', 'value'),
+        Input('regiao-dropdown', 'value'),
+        Input('ano-dropdown', 'value'),
+        Input('date-picker-range', 'start_date'),
         Input('date-picker-range', 'end_date')
-    ] 
+    ]
 )
-def upgrade_graphs(produtos, regioes, anos, start_date, end_date): 
+def upgrade_graphs(produtos, regioes, anos, start_date, end_date):
     try:
         start_date = pd.to_datetime(start_date)
         end_date = pd.to_datetime(end_date)
-        
+
         figRegiao = analise.analiseVendasRegiao(regioes)
         figProduto = analise.analiseVendasProduto(produtos)
         figMes = analise.analiseVendasMensais(anos)
@@ -228,26 +293,21 @@ def upgrade_graphs(produtos, regioes, anos, start_date, end_date):
         figSemana = analise.analiseVendasSemanais()
         figOutliers = analise.analiseOutliers()
         figDistribuicao = analise.distVendas()
+        figvendasAcumuladas = analise.vendasAcumuladas()
         media, desvio = analise.analiseMediaDesvio()
         figMediaDesvio = go.Figure([
             go.Bar(
-                x= ['Média','Desvio Padrão'],
-                y= [media, desvio],
-                marker_color= ['blue','red']
+                x=['Média', 'Desvio Padrão'],
+                y=[media, desvio],
+                marker_color=['blue', 'red']
             )
-        ],layout= go.Layout(title= f'Média e Desvio padrão: Média ={media:.2f}, Desvio={desvio:.2f}')
-    )
-        
+        ], layout=go.Layout(title=f'Média e Desvio padrão: Média ={media:.2f}, Desvio={desvio:.2f}'))
 
-
-        
-        return figProduto, figRegiao, figMes, figDia, figSemana, figOutliers, figDistribuicao,figMediaDesvio
-    
+        return (figProduto, figRegiao, figMes, figDia, figSemana, figOutliers, figDistribuicao, figMediaDesvio, figvendasAcumuladas)
     except Exception as e:
         print(f'Erro ao atualizar os graficos: {str(e)}')
         return go.Figure()
-        
 
-#roda o app
+# roda o app
 if __name__ == '__main__':
     app.run_server(debug=True)
