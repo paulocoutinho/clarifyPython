@@ -1,6 +1,6 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
@@ -91,7 +91,7 @@ class AnalisadorDeVendas:
     #frafico vendas semanais
     def analiseVendasSemanais(self):
         dfDiaSemana = self.dados.groupby('diaSemana')['valor'].sum().reset_index()
-        dfDiaSemana['diaSemana'] = dfDiaSemana[dfDiaSemana].map({
+        dfDiaSemana['diaSemana'] = dfDiaSemana['diaSemana'].map({
             0: 'Domingo',
             1: 'Segunda',
             2: 'Terça',
@@ -107,12 +107,49 @@ class AnalisadorDeVendas:
             title= 'Vendas por Dia da Semana',
             color= 'valor'
         )
+        lkstyle={'color':'white','text-align':'center'}
         return fig
+
+##identifica os outlines com base em um intervalo
+    def analiseOutliers(self):
+        q1 = self.dados['valor'].quantile(0.25)
+        q3 = self.dados['valor'].quantile(0.75)
+        iqr = q3 - q1
+        limInf = q1 - 1.5 * iqr
+        limSup = q3 + 1.5 * iqr
+        outliners = self.dados[(self.dados['valor'] < limInf) | (self.dados['valor'] > limSup)]
+        fig = px.scatter(
+            outliners,
+            x= 'data',
+            y= 'valor',
+            title= 'Outliners',
+        )
+        return fig
+
+    #retorna o grafico de distribuição de vendas usando o plotly
+    def distVendas(self):
+        fig = px.histogram(
+            self.dados,
+            x= 'valor',
+            title= 'Distribuição de Vendas',
+            nbins= 30
+        )
+        return fig
+
+    #calculo de media e desvio pdrão das vendas
+    def analiseMediaDesvio(self):
+        med = self.dados['valor'].mean()
+        desv = self.dados['valor'].std() #calcula o desvio padrão
+        return med, desv
+
+#vendas acumuladas
+
+
 #------------------- Instanciar o objeto de analise de vendas-------------------#
 analise = AnalisadorDeVendas(df)
 #------------------- layout do app dash -------------------#
-app.layout = html.Div([
-    html.H1('Análise de Vendas', style={'text-align':'center'}),
+app.layout = html.Div([ 
+    html.H1('Análise de Vendas', style={'color':'white','text-align':'center'}),
     #cria os filtros de seleção para o painel
     html.Div([
         html.Label('Selecione os produtos'),
@@ -134,10 +171,9 @@ app.layout = html.Div([
         html.Label('Selecione as Ano'),
         dcc.Dropdown(
             id = 'ano-dropdown',
-            options = [{'label':str(ano), 'value':ano} for ano in df['ano'].unique()],
-            value = df['ano'].min(),
-            style = {'width':'48%'}
+            options = {'distth':'48%'}
         ),
+            
         html.Label('Selecione um periodo'),
         dcc.DatePickerRange(
             id = 'date-picker-range',
@@ -146,17 +182,20 @@ app.layout = html.Div([
             display_format = 'YYYY-MM-DD',
             style = {'width':'48%'}
         ),
-    ], style={'padding':'20px'}),
+    ], style={'background':'black','padding':'20px'}),
     #grafico
     html.Div([
         dcc.Graph(id='grafico-produto'),
         dcc.Graph(id='grafico-regiao'),
         dcc.Graph(id='grafico-ano'),
         dcc.Graph(id='grafico-dia'),
-        dcc.Graph(id='grafico-semana')
+        dcc.Graph(id='grafico-semana'),
+        dcc.Graph(id='grafico-outliers'),
+        dcc.Graph(id='grafico-distribuicao'),
+        dcc.Graph(id='grafico-mediaDesvio')
     ])
         
-])
+],style={'background':'black','padding':'20px'})
 
 #------------------- Callbacks -------------------#
 @app.callback(
@@ -165,7 +204,17 @@ app.layout = html.Div([
     Output('grafico-ano', 'figure'),
     Output('grafico-dia', 'figure'),
     Output('grafico-semana', 'figure'),
-    [Input('produto-dropdown', 'value'), Input('regiao-dropdown', 'value'), Input('ano-dropdown', 'value'), Input('date-picker-range', 'start_date'), Input('date-picker-range', 'end_date')] 
+    Output('grafico-outliers', 'figure'),
+    Output('grafico-distribuicao', 'figure'),
+    Output('grafico-mediaDesvio', 'figure'),
+    
+    [
+        Input('produto-dropdown', 'value'), 
+        Input('regiao-dropdown', 'value'), 
+        Input('ano-dropdown', 'value'), 
+        Input('date-picker-range', 'start_date'), 
+        Input('date-picker-range', 'end_date')
+    ] 
 )
 def upgrade_graphs(produtos, regioes, anos, start_date, end_date): 
     try:
@@ -177,8 +226,22 @@ def upgrade_graphs(produtos, regioes, anos, start_date, end_date):
         figMes = analise.analiseVendasMensais(anos)
         figDia = analise.analiseVendasDiarias(start_date, end_date)
         figSemana = analise.analiseVendasSemanais()
+        figOutliers = analise.analiseOutliers()
+        figDistribuicao = analise.distVendas()
+        media, desvio = analise.analiseMediaDesvio()
+        figMediaDesvio = go.Figure([
+            go.Bar(
+                x= ['Média','Desvio Padrão'],
+                y= [media, desvio],
+                marker_color= ['blue','red']
+            )
+        ],layout= go.Layout(title= f'Média e Desvio padrão: Média ={media:.2f}, Desvio={desvio:.2f}')
+    )
         
-        return figProduto, figRegiao, figMes, figDia, figSemana
+
+
+        
+        return figProduto, figRegiao, figMes, figDia, figSemana, figOutliers, figDistribuicao,figMediaDesvio
     
     except Exception as e:
         print(f'Erro ao atualizar os graficos: {str(e)}')
