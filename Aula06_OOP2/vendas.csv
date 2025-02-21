@@ -1,101 +1,101 @@
-produtos,regiao,valor,data
-"('Produto C',)","('Sudeste',)","(150.67,)","(datetime.datetime(2024, 4, 20, 15, 55, 25, 976427),)"
-"('Produto C',)","('Sudeste',)","(391.81,)","(datetime.datetime(2024, 11, 16, 15, 55, 25, 976447),)"
-"('Produto C',)","('Sudeste',)","(407.59,)","(datetime.datetime(2024, 9, 10, 15, 55, 25, 976456),)"
-"('Produto C',)","('Sudeste',)","(397.71,)","(datetime.datetime(2024, 8, 18, 15, 55, 25, 976464),)"
-"('Produto C',)","('Sudeste',)","(81.68,)","(datetime.datetime(2024, 9, 3, 15, 55, 25, 976471),)"
-"('Produto C',)","('Sudeste',)","(196.72,)","(datetime.datetime(2024, 8, 22, 15, 55, 25, 976477),)"
-"('Produto C',)","('Sudeste',)","(417.29,)","(datetime.datetime(2025, 1, 5, 15, 55, 25, 976484),)"
-"('Produto C',)","('Sudeste',)","(499.45,)","(datetime.datetime(2024, 10, 29, 15, 55, 25, 976490),)"
-"('Produto C',)","('Sudeste',)","(438.3,)","(datetime.datetime(2024, 7, 6, 15, 55, 25, 976496),)"
-"('Produto C',)","('Sudeste',)","(174.18,)","(datetime.datetime(2024, 11, 23, 15, 55, 25, 976502),)"
-"('Produto C',)","('Sudeste',)","(82.94,)","(datetime.datetime(2024, 10, 16, 15, 55, 25, 976508),)"
-"('Produto C',)","('Sudeste',)","(189.05,)","(datetime.datetime(2024, 4, 30, 15, 55, 25, 976515),)"
-"('Produto C',)","('Sudeste',)","(431.19,)","(datetime.datetime(2024, 9, 25, 15, 55, 25, 976522),)"
-"('Produto C',)","('Sudeste',)","(445.41,)","(datetime.datetime(2024, 5, 10, 15, 55, 25, 976528),)"
-"('Produto C',)","('Sudeste',)","(263.21,)","(datetime.datetime(2024, 3, 2, 15, 55, 25, 976534),)"
-"('Produto C',)","('Sudeste',)","(294.38,)","(datetime.datetime(2024, 12, 26, 15, 55, 25, 976540),)"
-"('Produto C',)","('Sudeste',)","(236.42,)","(datetime.datetime(2024, 8, 19, 15, 55, 25, 976546),)"
-"('Produto C',)","('Sudeste',)","(229.45,)","(datetime.datetime(2024, 12, 8, 15, 55, 25, 976552),)"
-"('Produto C',)","('Sudeste',)","(478.72,)","(datetime.datetime(2024, 4, 8, 15, 55, 25, 976557),)"
-"('Produto C',)","('Sudeste',)","(244.51,)","(datetime.datetime(2024, 9, 29, 15, 55, 25, 976564),)"
-"('Produto C',)","('Sudeste',)","(82.93,)","(datetime.datetime(2025, 1, 24, 15, 55, 25, 976570),)"
-"('Produto C',)","('Sudeste',)","(422.5,)","(datetime.datetime(2024, 7, 24, 15, 55, 25, 976576),)"
-"('Produto C',)","('Sudeste',)","(193.83,)","(datetime.datetime(2024, 6, 27, 15, 55, 25, 976582),)"
-"('Produto C',)","('Sudeste',)","(62.96,)","(datetime.datetime(2024, 5, 16, 15, 55, 25, 976588),)"
-"('Produto C',)","('Sudeste',)","(212.82,)","(datetime.datetime(2024, 7, 31, 15, 55, 25, 976594),)"
-"('Produto C',)","('Sudeste',)","(463.45,)","(datetime.datetime(2024, 9, 23, 15, 55, 25, 976599),)"
-"('Produto C',)","('Sudeste',)","(72.29,)","(datetime.datetime(2024, 9, 25, 15, 55, 25, 976605),)"
-"('Produto C',)","('Sudeste',)","(53.7,)","(datetime.datetime(2024, 7, 10, 15, 55, 25, 976612),)"
-"('Produto C',)","('Sudeste',)","(87.92,)","(datetime.datetime(2024, 4, 1, 15, 55, 25, 976617),)"
-"('Produto C',)","('Sudeste',)","(196.43,)","(datetime.datetime(2025, 1, 7, 15, 55, 25, 976623),)"
-"('Produto C',)","('Sudeste',)","(124.78,)","(datetime.datetime(2024, 2, 21, 15, 55, 25, 976629),)"
-"('Produto C',)","('Sudeste',)","(489.53,)","(datetime.datetime(2024, 10, 9, 15, 55, 25, 976635),)"
-"('Produto C',)","('Sudeste',)","(385.65,)","(datetime.datetime(2024, 9, 29, 15, 55, 25, 976641),)"
-"('Produto C',)","('Sudeste',)","(469.53,)","(datetime.datetime(2025, 2, 10, 15, 55, 25, 976647),)"
-"('Produto C',)","('Sudeste',)","(344.77,)","(datetime.datetime(2024, 6, 2, 15, 55, 25, 976653),)"
-"('Produto C',)","('Sudeste',)","(350.3,)","(datetime.datetime(2025, 1, 28, 15, 55, 25, 976659),)"
-"('Produto C',)","('Sudeste',)","(277.12,)","(datetime.datetime(2024, 4, 11, 15, 55, 25, 976664),)"
-"('Produto C',)","('Sudeste',)","(418.08,)","(datetime.datetime(2025, 1, 29, 15, 55, 25, 976670),)"
-"('Produto C',)","('Sudeste',)","(484.38,)","(datetime.datetime(2024, 5, 27, 15, 55, 25, 976676),)"
-"('Produto C',)","('Sudeste',)","(152.74,)","(datetime.datetime(2024, 2, 24, 15, 55, 25, 976682),)"
-"('Produto C',)","('Sudeste',)","(480.11,)","(datetime.datetime(2025, 1, 6, 15, 55, 25, 976688),)"
-"('Produto C',)","('Sudeste',)","(455.53,)","(datetime.datetime(2024, 12, 8, 15, 55, 25, 976694),)"
-"('Produto C',)","('Sudeste',)","(346.84,)","(datetime.datetime(2024, 8, 29, 15, 55, 25, 976703),)"
-"('Produto C',)","('Sudeste',)","(88.69,)","(datetime.datetime(2024, 10, 26, 15, 55, 25, 976709),)"
-"('Produto C',)","('Sudeste',)","(252.09,)","(datetime.datetime(2025, 2, 17, 15, 55, 25, 976715),)"
-"('Produto C',)","('Sudeste',)","(153.83,)","(datetime.datetime(2025, 1, 11, 15, 55, 25, 976720),)"
-"('Produto C',)","('Sudeste',)","(52.58,)","(datetime.datetime(2024, 8, 24, 15, 55, 25, 976726),)"
-"('Produto C',)","('Sudeste',)","(369.74,)","(datetime.datetime(2024, 8, 29, 15, 55, 25, 976732),)"
-"('Produto C',)","('Sudeste',)","(60.7,)","(datetime.datetime(2024, 7, 14, 15, 55, 25, 976737),)"
-"('Produto C',)","('Sudeste',)","(170.56,)","(datetime.datetime(2024, 4, 27, 15, 55, 25, 976743),)"
-"('Produto C',)","('Sudeste',)","(347.65,)","(datetime.datetime(2024, 10, 10, 15, 55, 25, 976751),)"
-"('Produto C',)","('Sudeste',)","(384.91,)","(datetime.datetime(2024, 4, 3, 15, 55, 25, 976757),)"
-"('Produto C',)","('Sudeste',)","(169.31,)","(datetime.datetime(2024, 6, 5, 15, 55, 25, 976763),)"
-"('Produto C',)","('Sudeste',)","(410.63,)","(datetime.datetime(2024, 11, 14, 15, 55, 25, 976769),)"
-"('Produto C',)","('Sudeste',)","(213.97,)","(datetime.datetime(2024, 8, 7, 15, 55, 25, 976775),)"
-"('Produto C',)","('Sudeste',)","(81.04,)","(datetime.datetime(2024, 7, 9, 15, 55, 25, 976781),)"
-"('Produto C',)","('Sudeste',)","(299.11,)","(datetime.datetime(2024, 11, 12, 15, 55, 25, 976787),)"
-"('Produto C',)","('Sudeste',)","(367.71,)","(datetime.datetime(2024, 4, 9, 15, 55, 25, 976795),)"
-"('Produto C',)","('Sudeste',)","(92.74,)","(datetime.datetime(2024, 6, 27, 15, 55, 25, 976801),)"
-"('Produto C',)","('Sudeste',)","(262.01,)","(datetime.datetime(2024, 3, 30, 15, 55, 25, 976807),)"
-"('Produto C',)","('Sudeste',)","(316.87,)","(datetime.datetime(2024, 3, 9, 15, 55, 25, 976813),)"
-"('Produto C',)","('Sudeste',)","(279.61,)","(datetime.datetime(2024, 6, 21, 15, 55, 25, 976818),)"
-"('Produto C',)","('Sudeste',)","(239.13,)","(datetime.datetime(2025, 1, 2, 15, 55, 25, 976824),)"
-"('Produto C',)","('Sudeste',)","(435.13,)","(datetime.datetime(2024, 9, 13, 15, 55, 25, 976830),)"
-"('Produto C',)","('Sudeste',)","(250.75,)","(datetime.datetime(2024, 10, 10, 15, 55, 25, 976836),)"
-"('Produto C',)","('Sudeste',)","(383.98,)","(datetime.datetime(2025, 1, 18, 15, 55, 25, 976842),)"
-"('Produto C',)","('Sudeste',)","(421.61,)","(datetime.datetime(2024, 11, 16, 15, 55, 25, 976848),)"
-"('Produto C',)","('Sudeste',)","(64.85,)","(datetime.datetime(2024, 11, 8, 15, 55, 25, 976853),)"
-"('Produto C',)","('Sudeste',)","(309.03,)","(datetime.datetime(2024, 2, 28, 15, 55, 25, 976859),)"
-"('Produto C',)","('Sudeste',)","(347.03,)","(datetime.datetime(2024, 10, 20, 15, 55, 25, 976865),)"
-"('Produto C',)","('Sudeste',)","(465.24,)","(datetime.datetime(2024, 6, 28, 15, 55, 25, 976870),)"
-"('Produto C',)","('Sudeste',)","(136.97,)","(datetime.datetime(2024, 8, 15, 15, 55, 25, 976876),)"
-"('Produto C',)","('Sudeste',)","(484.43,)","(datetime.datetime(2024, 3, 23, 15, 55, 25, 976883),)"
-"('Produto C',)","('Sudeste',)","(102.29,)","(datetime.datetime(2024, 8, 4, 15, 55, 25, 976890),)"
-"('Produto C',)","('Sudeste',)","(225.21,)","(datetime.datetime(2024, 3, 27, 15, 55, 25, 976896),)"
-"('Produto C',)","('Sudeste',)","(175.66,)","(datetime.datetime(2024, 9, 18, 15, 55, 25, 976901),)"
-"('Produto C',)","('Sudeste',)","(96.77,)","(datetime.datetime(2025, 1, 18, 15, 55, 25, 976907),)"
-"('Produto C',)","('Sudeste',)","(396.47,)","(datetime.datetime(2024, 6, 20, 15, 55, 25, 976913),)"
-"('Produto C',)","('Sudeste',)","(369.24,)","(datetime.datetime(2024, 10, 12, 15, 55, 25, 976919),)"
-"('Produto C',)","('Sudeste',)","(317.04,)","(datetime.datetime(2024, 9, 24, 15, 55, 25, 976924),)"
-"('Produto C',)","('Sudeste',)","(465.76,)","(datetime.datetime(2024, 2, 29, 15, 55, 25, 976930),)"
-"('Produto C',)","('Sudeste',)","(401.62,)","(datetime.datetime(2024, 11, 6, 15, 55, 25, 976935),)"
-"('Produto C',)","('Sudeste',)","(82.93,)","(datetime.datetime(2024, 9, 23, 15, 55, 25, 976942),)"
-"('Produto C',)","('Sudeste',)","(338.17,)","(datetime.datetime(2024, 3, 18, 15, 55, 25, 976947),)"
-"('Produto C',)","('Sudeste',)","(210.91,)","(datetime.datetime(2025, 1, 15, 15, 55, 25, 976953),)"
-"('Produto C',)","('Sudeste',)","(411.04,)","(datetime.datetime(2024, 7, 14, 15, 55, 25, 976959),)"
-"('Produto C',)","('Sudeste',)","(329.91,)","(datetime.datetime(2024, 8, 18, 15, 55, 25, 976968),)"
-"('Produto C',)","('Sudeste',)","(380.24,)","(datetime.datetime(2025, 2, 7, 15, 55, 25, 976973),)"
-"('Produto C',)","('Sudeste',)","(298.63,)","(datetime.datetime(2024, 10, 22, 15, 55, 25, 976979),)"
-"('Produto C',)","('Sudeste',)","(306.35,)","(datetime.datetime(2024, 11, 30, 15, 55, 25, 976985),)"
-"('Produto C',)","('Sudeste',)","(269.82,)","(datetime.datetime(2025, 1, 31, 15, 55, 25, 976990),)"
-"('Produto C',)","('Sudeste',)","(324.6,)","(datetime.datetime(2024, 5, 29, 15, 55, 25, 976996),)"
-"('Produto C',)","('Sudeste',)","(147.1,)","(datetime.datetime(2025, 1, 12, 15, 55, 25, 977002),)"
-"('Produto C',)","('Sudeste',)","(248.11,)","(datetime.datetime(2024, 4, 30, 15, 55, 25, 977008),)"
-"('Produto C',)","('Sudeste',)","(137.18,)","(datetime.datetime(2024, 12, 14, 15, 55, 25, 977013),)"
-"('Produto C',)","('Sudeste',)","(159.98,)","(datetime.datetime(2024, 11, 4, 15, 55, 25, 977019),)"
-"('Produto C',)","('Sudeste',)","(302.3,)","(datetime.datetime(2024, 12, 8, 15, 55, 25, 977025),)"
-"('Produto C',)","('Sudeste',)","(473.31,)","(datetime.datetime(2024, 8, 1, 15, 55, 25, 977031),)"
-"('Produto C',)","('Sudeste',)","(199.0,)","(datetime.datetime(2024, 3, 27, 15, 55, 25, 977036),)"
-"('Produto C',)","('Sudeste',)","(240.0,)","(datetime.datetime(2024, 11, 11, 15, 55, 25, 977043),)"
+produto,regiao,valor,data
+Produto C,Nordeste,486.95,2025-01-18 16:12:22.898188
+Produto C,Sudeste,155.59,2024-09-30 16:12:22.898210
+Produto D,Oeste,432.05,2024-08-18 16:12:22.898218
+Produto B,Oeste,218.36,2024-06-30 16:12:22.898225
+Produto A,Nordeste,458.65,2024-09-27 16:12:22.898232
+Produto A,Sul,495.97,2024-12-24 16:12:22.898238
+Produto B,Sul,191.23,2024-05-22 16:12:22.898244
+Produto A,Nordeste,161.49,2024-05-28 16:12:22.898250
+Produto C,Oeste,247.08,2024-10-06 16:12:22.898256
+Produto D,Nordeste,449.24,2024-11-09 16:12:22.898262
+Produto B,Oeste,393.41,2024-07-16 16:12:22.898269
+Produto D,Sul,422.79,2025-01-07 16:12:22.898274
+Produto A,Sul,299.46,2024-04-02 16:12:22.898280
+Produto A,Sudeste,398.79,2024-08-25 16:12:22.898286
+Produto B,Sudeste,83.42,2024-04-01 16:12:22.898291
+Produto C,Norte,221.94,2025-02-04 16:12:22.898297
+Produto C,Sudeste,291.9,2024-08-26 16:12:22.898303
+Produto C,Nordeste,345.78,2025-02-03 16:12:22.898308
+Produto B,Sudeste,199.91,2024-06-08 16:12:22.898314
+Produto A,Norte,170.05,2024-07-30 16:12:22.898319
+Produto C,Nordeste,131.4,2024-12-02 16:12:22.898325
+Produto B,Sul,69.08,2024-03-20 16:12:22.898331
+Produto A,Norte,490.88,2024-12-15 16:12:22.898335
+Produto C,Norte,102.31,2024-05-18 16:12:22.898341
+Produto B,Sul,383.12,2025-02-17 16:12:22.898347
+Produto D,Sul,475.51,2024-10-26 16:12:22.898353
+Produto B,Oeste,252.58,2024-06-13 16:12:22.898359
+Produto C,Norte,191.35,2024-12-14 16:12:22.898364
+Produto D,Sudeste,374.6,2024-11-12 16:12:22.898370
+Produto D,Sul,166.01,2024-03-07 16:12:22.898375
+Produto C,Norte,435.16,2024-04-26 16:12:22.898381
+Produto C,Oeste,317.2,2024-07-17 16:12:22.898387
+Produto A,Nordeste,298.69,2024-10-17 16:12:22.898393
+Produto D,Oeste,302.16,2024-10-20 16:12:22.898398
+Produto D,Nordeste,425.35,2025-01-12 16:12:22.898404
+Produto A,Oeste,78.11,2024-11-06 16:12:22.898409
+Produto A,Sudeste,79.26,2024-12-27 16:12:22.898415
+Produto C,Sul,265.38,2025-01-08 16:12:22.898420
+Produto D,Oeste,435.7,2024-04-23 16:12:22.898426
+Produto D,Sudeste,322.26,2025-01-07 16:12:22.898432
+Produto D,Nordeste,146.19,2024-04-05 16:12:22.898437
+Produto B,Oeste,205.64,2024-05-12 16:12:22.898443
+Produto D,Sul,123.19,2024-09-01 16:12:22.898448
+Produto C,Sul,328.69,2025-02-19 16:12:22.898454
+Produto A,Sudeste,203.18,2024-05-12 16:12:22.898459
+Produto C,Sudeste,229.97,2024-12-15 16:12:22.898465
+Produto C,Oeste,441.46,2024-09-07 16:12:22.898470
+Produto A,Nordeste,233.78,2024-04-27 16:12:22.898475
+Produto D,Nordeste,440.5,2024-09-27 16:12:22.898480
+Produto B,Oeste,111.0,2024-06-05 16:12:22.898485
+Produto A,Sudeste,384.98,2024-12-22 16:12:22.898496
+Produto A,Norte,339.46,2025-01-10 16:12:22.898502
+Produto C,Nordeste,401.25,2024-02-27 16:12:22.898507
+Produto D,Oeste,239.24,2024-12-31 16:12:22.898513
+Produto C,Sudeste,389.9,2024-04-04 16:12:22.898519
+Produto C,Sudeste,217.69,2024-08-15 16:12:22.898523
+Produto D,Nordeste,242.2,2025-02-10 16:12:22.898529
+Produto D,Nordeste,53.03,2024-11-09 16:12:22.898537
+Produto B,Oeste,347.52,2024-03-27 16:12:22.898545
+Produto B,Sudeste,315.47,2024-08-10 16:12:22.898551
+Produto B,Nordeste,363.59,2025-01-05 16:12:22.898555
+Produto C,Sudeste,209.82,2024-10-17 16:12:22.898561
+Produto D,Sudeste,244.96,2024-08-22 16:12:22.898566
+Produto B,Oeste,417.12,2024-07-17 16:12:22.898571
+Produto A,Oeste,278.46,2024-07-04 16:12:22.898576
+Produto D,Oeste,499.84,2024-03-22 16:12:22.898582
+Produto C,Sul,186.11,2024-08-04 16:12:22.898590
+Produto A,Oeste,171.27,2025-01-10 16:12:22.898598
+Produto A,Norte,192.35,2024-07-11 16:12:22.898605
+Produto C,Sul,83.28,2024-12-28 16:12:22.898610
+Produto A,Nordeste,72.38,2024-04-25 16:12:22.898616
+Produto A,Sul,167.67,2024-06-18 16:12:22.898621
+Produto B,Nordeste,257.98,2024-06-05 16:12:22.898627
+Produto C,Nordeste,411.47,2024-06-29 16:12:22.898633
+Produto B,Nordeste,226.5,2024-09-27 16:12:22.898638
+Produto B,Sudeste,277.49,2024-07-24 16:12:22.898644
+Produto C,Sudeste,386.06,2024-04-28 16:12:22.898649
+Produto A,Oeste,157.46,2024-10-25 16:12:22.898655
+Produto A,Norte,259.69,2024-12-03 16:12:22.898661
+Produto C,Oeste,300.17,2025-01-21 16:12:22.898666
+Produto C,Sudeste,439.17,2024-06-22 16:12:22.898672
+Produto A,Sudeste,94.3,2024-03-01 16:12:22.898677
+Produto D,Sudeste,74.8,2024-08-23 16:12:22.898683
+Produto D,Nordeste,168.76,2024-08-05 16:12:22.898689
+Produto C,Norte,281.66,2024-06-13 16:12:22.898694
+Produto D,Nordeste,201.79,2024-11-28 16:12:22.898700
+Produto D,Nordeste,94.05,2024-08-22 16:12:22.898705
+Produto C,Oeste,485.12,2024-07-29 16:12:22.898710
+Produto A,Oeste,422.98,2024-10-31 16:12:22.898716
+Produto B,Nordeste,465.22,2024-07-21 16:12:22.898722
+Produto A,Sudeste,102.16,2024-05-28 16:12:22.898728
+Produto B,Nordeste,439.77,2025-02-20 16:12:22.898733
+Produto A,Sul,266.17,2024-07-28 16:12:22.898739
+Produto A,Nordeste,261.42,2024-12-19 16:12:22.898745
+Produto D,Norte,261.86,2024-02-24 16:12:22.898751
+Produto B,Sudeste,478.93,2024-03-10 16:12:22.898756
+Produto A,Sudeste,486.64,2024-10-06 16:12:22.898762
+Produto C,Nordeste,362.52,2024-05-29 16:12:22.898767
+Produto A,Sudeste,170.95,2024-06-17 16:12:22.898773
+Produto C,Sul,137.33,2024-04-14 16:12:22.898779

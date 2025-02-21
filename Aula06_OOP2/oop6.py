@@ -30,7 +30,7 @@ class AnalisadorDeVendas:
         self.dados['mes'] = self.dados['data'].dt.month
         self.dados['ano'] = self.dados['data'].dt.year
         self.dados['dia'] = self.dados['data'].dt.day
-        self.dados['dia_da_semana'] = self.dados['data'].dt.weekday
+        self.dados['diaSemana'] = self.dados['data'].dt.weekday
         #remove os dados ausentes em colunas
         self.dados.dropna(subset=['produto','valor'], inplace=True)
     
@@ -45,7 +45,69 @@ class AnalisadorDeVendas:
             color= "valor"
         )
         return fig
-
+    
+    #gráfico de pizza para vendas por região
+    def analiseVendasRegiao(self, regioesFiltradas):
+        dfregiao = self.dados[self.dados['regiao'].isin(regioesFiltradas)]
+        dfregiao = dfregiao.groupby(['regiao'])['valor'].sum().reset_index().sort_values(by='valor', ascending=False)
+        fig = px.pie(
+            dfregiao,
+            names= 'regiao',
+            values= 'valor',
+            title= "Vendas por Região",
+            color= "valor"
+        )
+        return fig
+    
+    #grafico de vendas mensais
+    def analiseVendasMensais(self, anosFiltrados):
+        dfMes = self.dados[self.dados['ano'] == anosFiltrados]
+        dfMes = dfMes.groupby(['mes','ano'])['valor'].sum().reset_index()
+        fig = px.line(
+            dfMes,
+            x= 'mes',
+            y= 'valor',
+            color= 'ano',
+            title= f'Vendas por Mês - {anosFiltrados}',
+            markers= True,
+            line_shape= 'spline'
+        )
+        return fig
+    
+    #grafico vendas diárias
+    def analiseVendasDiarias(self, stard_date, end_date):
+        dfDia = self.dados[(self.dados['data'] >= stard_date) & (self.dados['data'] <= end_date)]
+        dfDia = dfDia.groupby('data')['valor'].sum().reset_index()
+        fig = px.line(
+            dfDia,
+            x= 'data',
+            y= 'valor',
+            title= f'Vendas Diárias',
+            markers= True,
+            #line_shape= 'spline'
+        )
+        return fig
+    
+    #frafico vendas semanais
+    def analiseVendasSemanais(self):
+        dfDiaSemana = self.dados.groupby('diaSemana')['valor'].sum().reset_index()
+        dfDiaSemana['diaSemana'] = dfDiaSemana[dfDiaSemana].map({
+            0: 'Domingo',
+            1: 'Segunda',
+            2: 'Terça',
+            3: 'Quarta',
+            4: 'Quinta',
+            5: 'Sexta',
+            6: 'Sábado'
+        })
+        fig = px.bar(
+            dfDiaSemana,
+            x= 'diaSemana',
+            y= 'valor',
+            title= 'Vendas por Dia da Semana',
+            color= 'valor'
+        )
+        return fig
 #------------------- Instanciar o objeto de analise de vendas-------------------#
 analise = AnalisadorDeVendas(df)
 #------------------- layout do app dash -------------------#
@@ -85,8 +147,13 @@ app.layout = html.Div([
             style = {'width':'48%'}
         ),
     ], style={'padding':'20px'}),
+    #grafico
     html.Div([
-        dcc.Graph(id='grafico-produto')
+        dcc.Graph(id='grafico-produto'),
+        dcc.Graph(id='grafico-regiao'),
+        dcc.Graph(id='grafico-ano'),
+        dcc.Graph(id='grafico-dia'),
+        dcc.Graph(id='grafico-semana')
     ])
         
 ])
@@ -94,6 +161,10 @@ app.layout = html.Div([
 #------------------- Callbacks -------------------#
 @app.callback(
     Output('grafico-produto', 'figure'),
+    Output('grafico-regiao', 'figure'),
+    Output('grafico-ano', 'figure'),
+    Output('grafico-dia', 'figure'),
+    Output('grafico-semana', 'figure'),
     [Input('produto-dropdown', 'value'), Input('regiao-dropdown', 'value'), Input('ano-dropdown', 'value'), Input('date-picker-range', 'start_date'), Input('date-picker-range', 'end_date')] 
 )
 def upgrade_graphs(produtos, regioes, anos, start_date, end_date): 
@@ -101,9 +172,13 @@ def upgrade_graphs(produtos, regioes, anos, start_date, end_date):
         start_date = pd.to_datetime(start_date)
         end_date = pd.to_datetime(end_date)
         
+        figRegiao = analise.analiseVendasRegiao(regioes)
         figProduto = analise.analiseVendasProduto(produtos)
+        figMes = analise.analiseVendasMensais(anos)
+        figDia = analise.analiseVendasDiarias(start_date, end_date)
+        figSemana = analise.analiseVendasSemanais()
         
-        return figProduto
+        return figProduto, figRegiao, figMes, figDia, figSemana
     
     except Exception as e:
         print(f'Erro ao atualizar os graficos: {str(e)}')
